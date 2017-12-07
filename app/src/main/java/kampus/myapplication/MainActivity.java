@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         new GetEarthQuake().execute();
     }
     private class GetEarthQuake extends AsyncTask<Void, Void, Void> {
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             HttpHandler sh = new HttpHandler();
             // Making a request to url and getting response
             String TEMP1  = "https://earthquake.usgs.gov/fdsnws/event/" +
-                    "1/query?format=geojson&starttime=2017-11-01&endtime=2017-12-02&minmagnitude=6&limit=10";
+                    "1/query?format=geojson&starttime=2017-11-01&endtime=2017-12-02&minmagnitude=5&limit=10";
             String TEMP2 = "https://earthquake.usgs.gov/fdsnws/event/" +
                     "1/query?format=geojson&starttime=2017-11-01&endtime=2017-12-02&minmagnitude=6&limit=10";
             String url = TEMP1;
