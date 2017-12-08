@@ -13,6 +13,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,13 +28,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        listView = findViewById(R.id.listView);
-//
-//        new GetEarthQuake().execute();
-        String temp = "23b";
-        int convertStr = Integer.parseInt(temp);
-        convertStr += 2;
-        ((TextView)findViewById(R.id.display)).setText(String.valueOf(convertStr));
+        listView = findViewById(R.id.listView);
+
+        new GetEarthQuake().execute();
+    }
+
+    private URL creatUrl(String stringUrl){
+        URL url = null;
+        try {
+            url = new URL(stringUrl);
+        } catch (MalformedURLException e) {
+            Log.e(TAG, "error when creating url", e );
+            return null;
+        }
+        return url;
     }
     private class GetEarthQuake extends AsyncTask<Void, Void, Void> {
 
