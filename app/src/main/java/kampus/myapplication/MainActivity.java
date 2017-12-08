@@ -3,6 +3,7 @@ package kampus.myapplication;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             String jsonStr = sh.makeServiceCall(url);
 
             Log.e(TAG, "Response from url: " + jsonStr);
-            if (jsonStr != null) {
+            if (!TextUtils.isEmpty(jsonStr)) {
                 try {
                     JSONObject jsonMain = new JSONObject(jsonStr);
                     JSONArray featuresArray = jsonMain.getJSONArray("features");

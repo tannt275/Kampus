@@ -19,7 +19,10 @@ public class HttpHandler {
     }
 
     public String makeServiceCall(String reqUrl) {
-        String response = null;
+        String response = "";
+        if (reqUrl == null) {
+            return  response;
+        }
         try {
             URL url = new URL(reqUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -27,9 +30,13 @@ public class HttpHandler {
             conn.setReadTimeout(10000);
             conn.setConnectTimeout(15000);
             conn.connect();
-            // read the response
-            InputStream in = new BufferedInputStream(conn.getInputStream());
-            response = convertStreamToString(in);
+
+            if (conn.getResponseCode() == 200) {
+                // read the response
+                InputStream in = new BufferedInputStream(conn.getInputStream());
+                response = convertStreamToString(in);
+            }
+
         } catch (MalformedURLException e) {
             Log.e(TAG, "MalformedURLException: " + e.getMessage());
         } catch (ProtocolException e) {
