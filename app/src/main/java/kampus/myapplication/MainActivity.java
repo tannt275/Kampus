@@ -33,16 +33,16 @@ public class MainActivity extends AppCompatActivity {
         new GetEarthQuake().execute();
     }
 
-    private URL creatUrl(String stringUrl){
+    private URL creatUrl(String stringUrl) throws MalformedURLException{
         URL url = null;
         try {
             url = new URL(stringUrl);
         } catch (MalformedURLException e) {
-            Log.e(TAG, "error when creating url", e );
-            return null;
+            e.printStackTrace();
         }
         return url;
     }
+
     private class GetEarthQuake extends AsyncTask<Void, Void, Void> {
 
         @Override
@@ -61,7 +61,12 @@ public class MainActivity extends AppCompatActivity {
             String TEMP2 = "https://earthquake.usgs.gov/fdsnws/event/" +
                     "1/query?format=geojson&starttime=2017-11-01&endtime=2017-12-02&minmagnitude=6&limit=10";
             String url = TEMP1;
-            String jsonStr = sh.makeServiceCall(url);
+            String jsonStr = null;
+            try {
+                jsonStr = sh.makeServiceCall(creatUrl(url));
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
 
             Log.e(TAG, "Response from url: " + jsonStr);
             if (!TextUtils.isEmpty(jsonStr)) {
