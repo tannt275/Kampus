@@ -24,8 +24,10 @@ public class HttpHandler {
         if (reqUrl == null) {
             return  response;
         }
+        HttpURLConnection conn = null;
+        InputStream in = null;
         try {
-            HttpURLConnection conn = (HttpURLConnection) reqUrl.openConnection();
+            conn = (HttpURLConnection) reqUrl.openConnection();
             conn.setRequestMethod("GET");
             conn.setReadTimeout(10000);
             conn.setConnectTimeout(15000);
@@ -33,8 +35,10 @@ public class HttpHandler {
 
             if (conn.getResponseCode() == 200) {
                 // read the response
-                InputStream in = new BufferedInputStream(conn.getInputStream());
+                in = new BufferedInputStream(conn.getInputStream());
                 response = convertStreamToString(in);
+            } else {
+                Log.e(TAG, "HTTP Response code = " + conn.getResponseCode());
             }
 
         }  catch (ProtocolException e) {
@@ -43,6 +47,17 @@ public class HttpHandler {
             Log.e(TAG, "IOException: " + e.getMessage());
         } catch (Exception e) {
             Log.e(TAG, "Exception: " + e.getMessage());
+        } finally {
+            if (conn != null) {
+                conn.disconnect();
+            }
+            if(in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return response;
     }
