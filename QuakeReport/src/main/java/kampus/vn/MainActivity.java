@@ -17,6 +17,17 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Earthquake> earthquakes = new ArrayList<>();
         //TODO add earthquake data for compatible with video
 
+        earthquakes.add(new Earthquake("1","2", "3"));
+        earthquakes.add(new Earthquake("1","2", "3"));
+        earthquakes.add(new Earthquake("1","2", "3"));
+        earthquakes.add(new Earthquake("1","2", "3"));
+        earthquakes.add(new Earthquake("1","2", "3"));
+        earthquakes.add(new Earthquake("1","2", "3"));
+        earthquakes.add(new Earthquake("1","2", "3"));
+        earthquakes.add(new Earthquake("1","2", "3"));
+        earthquakes.add(new Earthquake("1","2", "3"));
+        earthquakes.add(new Earthquake("1","2", "3"));
+        earthquakes.add(new Earthquake("1","2", "3"));
 
         ListView listView = findViewById(R.id.listView);
         EarthquakeAdapter adapter = new EarthquakeAdapter(this, earthquakes);
