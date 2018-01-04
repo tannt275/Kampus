@@ -18,9 +18,10 @@ public class Earthquake {
 
     /**
      * Constructs a new {@link Earthquake} object
+     *
      * @param magnitude is magnitude of the earthquake
-     * @param location is the city location of the earthquake
-     * @param date is the date the earthquake  happened
+     * @param location  is the city location of the earthquake
+     * @param date      is the date the earthquake  happened
      */
 
     public Earthquake(String magnitude, String location, String date) {

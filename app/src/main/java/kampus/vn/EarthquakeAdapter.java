@@ -31,10 +31,10 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         TextView location = rootView.findViewById(R.id.location);
         TextView date = rootView.findViewById(R.id.date);
 
+        //Bind data from View to each item
         magnitude.setText(currentEarthquake.getMagnitude());
         location.setText(currentEarthquake.getLocation());
         date.setText(currentEarthquake.getDate());
-
         return rootView;
     }
 }
