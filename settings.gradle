@@ -1,1 +1,2 @@
-include ':QuakeReport', ':Contacttutorial'
+include ':app', ':Contacttutorial'
+
