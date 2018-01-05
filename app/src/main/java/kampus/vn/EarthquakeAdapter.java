@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
+public class EarthquakeAdapter extends ArrayAdapter<EarthQuake> {
 
-    public EarthquakeAdapter(@NonNull Context context, @NonNull List<Earthquake> earthquakes) {
+    public EarthquakeAdapter(@NonNull Context context, @NonNull List<EarthQuake> earthquakes) {
         super(context, 0, earthquakes);
     }
 
@@ -25,16 +25,16 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
             rootView = LayoutInflater.from(getContext()).inflate(R.layout.earthquake_list_item, parent, false);
         }
 
-        Earthquake currentEarthquake = getItem(position);
+        EarthQuake currentEarthQuake = getItem(position);
 
         TextView magnitude = rootView.findViewById(R.id.magnitude);
         TextView location = rootView.findViewById(R.id.location);
         TextView date = rootView.findViewById(R.id.date);
 
         //Bind data from View to each item
-        magnitude.setText(currentEarthquake.getMagnitude());
-        location.setText(currentEarthquake.getLocation());
-        date.setText(currentEarthquake.getDate());
+        magnitude.setText(currentEarthQuake.getMagnitude());
+        location.setText(currentEarthQuake.getLocation());
+        date.setText(currentEarthQuake.getDate());
         return rootView;
     }
 }

@@ -1,7 +1,7 @@
 package kampus.vn;
 
 
-public class Earthquake {
+public class EarthQuake {
 
     /**
      * Magnitude of the earthquake
@@ -17,14 +17,14 @@ public class Earthquake {
     private String mDate;
 
     /**
-     * Constructs a new {@link Earthquake} object
+     * Constructs a new {@link EarthQuake} object
      *
      * @param magnitude is magnitude of the earthquake
      * @param location  is the city location of the earthquake
      * @param date      is the date the earthquake  happened
      */
 
-    public Earthquake(String magnitude, String location, String date) {
+    public EarthQuake(String magnitude, String location, String date) {
         this.mMagnitude = magnitude;
         this.mLocation = location;
         this.mDate = date;
