@@ -6,7 +6,7 @@ public class EarthQuake {
     /**
      * Magnitude of the earthquake
      */
-    private String mMagnitude;
+    private double mMagnitude;
     /**
      * Location of the earthquake
      */
@@ -24,17 +24,17 @@ public class EarthQuake {
      * @param timeInMilliseconds      is the time in milliseconds when the earthquake  happened
      */
 
-    public EarthQuake(String magnitude, String location, long timeInMilliseconds) {
+    public EarthQuake(double magnitude, String location, long timeInMilliseconds) {
         this.mMagnitude = magnitude;
         this.mLocation = location;
         this.mTimeInMilliseconds = timeInMilliseconds;
     }
 
-    public String getMagnitude() {
+    public double getMagnitude() {
         return mMagnitude;
     }
 
-    public void setMagnitude(String mMagnitude) {
+    public void setMagnitude(double mMagnitude) {
         this.mMagnitude = mMagnitude;
     }
 

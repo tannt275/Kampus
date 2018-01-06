@@ -36,7 +36,7 @@ public class QueryUtils {
                 String place = properties.getString("place");
                 long time = properties.getLong("time");
 
-                EarthQuake earthQuake = new EarthQuake(String.valueOf(mag), place, time);
+                EarthQuake earthQuake = new EarthQuake(mag, place, time);
                 earthQuakes.add(earthQuake);
             }
         } catch (JSONException e) {
