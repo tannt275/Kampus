@@ -6,6 +6,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,16 +16,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ListView listView = findViewById(R.id.listView);
 
-        ArrayList<String> objects = new ArrayList<>();
-        objects.add("Ha Dong");
-        objects.add("Hoa Binh");
-        objects.add("Nghe An");
-        objects.add("Hai Duong");
-        objects.add("Ha Tinh");
-        objects.add("Nha Trang");
-        objects.add("Bac Giang");
+        List<EarthQuake> list = TempsData.generateEarthQuakes();
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, objects);
+        MyAdapter adapter = new MyAdapter(this, list);
+
         listView.setAdapter(adapter);
     }
 }
