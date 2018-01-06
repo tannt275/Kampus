@@ -26,7 +26,7 @@ public class EarthquakeAdapter extends ArrayAdapter<EarthQuake> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View rootView = convertView;
-        if (rootView == null){
+        if (rootView == null) {
             rootView = LayoutInflater.from(getContext()).inflate(R.layout.earthquake_list_item, parent, false);
         }
 
@@ -40,6 +40,10 @@ public class EarthquakeAdapter extends ArrayAdapter<EarthQuake> {
 
         //Bind data from View to each item
         magnitude.setText(formatMagnitude(currentEarthQuake.getMagnitude()));
+
+        MagnitudeColor magnitudeColor = getMagnitudeColor(currentEarthQuake.getMagnitude());
+        magnitude.setTextColor(getContext().getResources().getColor(magnitudeColor.getTextColor()));
+        magnitude.setBackgroundDrawable(getContext().getResources().getDrawable(magnitudeColor.getCircleDrawable()));
 
         String originalLocation = currentEarthQuake.getLocation();
         String locationOffset = "";
@@ -83,5 +87,61 @@ public class EarthquakeAdapter extends ArrayAdapter<EarthQuake> {
     private String formatMagnitude(double magnitude) {
         DecimalFormat magnitudeFormat = new DecimalFormat("0.0");
         return magnitudeFormat.format(magnitude);
+    }
+
+    private MagnitudeColor getMagnitudeColor(double magnitude) {
+        int mag = (int) Math.floor(magnitude);
+        MagnitudeColor magColor = new MagnitudeColor(R.color.colorRed, R.drawable.red_circle);
+        switch (mag) {
+            case 0:
+            case 1:
+            case 2:
+                magColor.setTextColor(R.color.colorGreen);
+                magColor.setCircleDrawable(R.drawable.green_circle);
+                break;
+            case 3:
+            case 4:
+                magColor.setTextColor(R.color.colorBlue);
+                magColor.setCircleDrawable(R.drawable.blue_circle);
+                break;
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+                magColor.setTextColor(R.color.colorRed);
+                magColor.setCircleDrawable(R.drawable.red_circle);
+                break;
+            default:
+                break;
+
+        }
+        return magColor;
+    }
+
+    class MagnitudeColor {
+        private int textColor;
+        private int circleDrawable;
+
+        public MagnitudeColor(int textColor, int circleDrawable) {
+            this.textColor = textColor;
+            this.circleDrawable = circleDrawable;
+        }
+
+        public int getTextColor() {
+            return textColor;
+        }
+
+        public void setTextColor(int textColor) {
+            this.textColor = textColor;
+        }
+
+        public int getCircleDrawable() {
+            return circleDrawable;
+        }
+
+        public void setCircleDrawable(int circleDrawable) {
+            this.circleDrawable = circleDrawable;
+        }
     }
 }
