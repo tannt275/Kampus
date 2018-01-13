@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">ContactTutorial</string>
-    <string name="pre_execute">Json Data is downloading</string>
-    <string name="json_parsing_error">Json parsing error: </string>
-    <string name="not_get_response">Couldn\'t get json from server.</string>
-    <string name="check_logcat">Couldn\'t get json from server. Check LogCat for possible errors!</string>
-</resources>

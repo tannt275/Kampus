@@ -40,7 +40,7 @@ public class EarthquakeAdapter extends ArrayAdapter<EarthQuake> {
 
         //Bind data from View to each item
         magnitude.setText(formatMagnitude(currentEarthQuake.getMagnitude()));
-
+        //Get object magnitude color for display
         MagnitudeColor magnitudeColor = getMagnitudeColor(currentEarthQuake.getMagnitude());
         magnitude.setTextColor(getContext().getResources().getColor(magnitudeColor.getTextColor()));
         magnitude.setBackgroundDrawable(getContext().getResources().getDrawable(magnitudeColor.getCircleDrawable()));
@@ -68,7 +68,7 @@ public class EarthquakeAdapter extends ArrayAdapter<EarthQuake> {
     }
 
     private String formatDate(Date dateObject) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
         return dateFormat.format(dateObject);
     }
 
