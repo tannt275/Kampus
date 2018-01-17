@@ -20,6 +20,17 @@ public class TempsData {
         String strBuilder = builder.toString();
     }
 
+
+
+
+
+
+
+
+
+
+
+
     public void doExample(Context context){
         ArrayList<String> listString = new ArrayList<>();
         listString.add("Hello"); //=> It is ok
@@ -32,5 +43,9 @@ public class TempsData {
         ArrayList<MEarthQuake> listEarthquakes = new ArrayList<>();
         ArrayAdapter<MEarthQuake> adapterEarthQuake = new ArrayAdapter<MEarthQuake>(context, R.layout.layout_item, listEarthquakes);
         MEarthQuake mEarthQuake = adapterEarthQuake.getItem(1); //=> It is ok
+        //long a = adapterEarthQuake.getItem(1);
+
     }
+
+
 }

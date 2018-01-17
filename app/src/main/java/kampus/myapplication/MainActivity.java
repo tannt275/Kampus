@@ -31,7 +31,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         listView = findViewById(R.id.listView);
 
-        new GetEarthQuake().execute();
+        new EarthquakeAsynctask().execute();
+    }
+
+    private void logOfMainActivity() {
+        Log.e(TAG, "function of mainactivity");
     }
 
     private URL creatUrl(String stringUrl) throws MalformedURLException{
@@ -44,13 +48,13 @@ public class MainActivity extends AppCompatActivity {
         return url;
     }
 
-    private class GetEarthQuake extends AsyncTask<Void, Void, Void> {
+    private class EarthquakeAsynctask extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             Toast.makeText(MainActivity.this,"Json Data is downloading",Toast.LENGTH_LONG).show();
-
+            logOfMainActivity();
         }
 
         @Override
@@ -68,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
-
+            logOfMainActivity();
             Log.e(TAG, "Response from url: " + jsonStr);
             if (!TextUtils.isEmpty(jsonStr)) {
                 try {
@@ -113,10 +117,10 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
+            logOfMainActivity();
             ListAdapter adapter = new ListAdapter();
             adapter.setListItems(listObject);
             listView.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
         }
     }
 }
