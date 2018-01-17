@@ -1,0 +1,4 @@
+#Fri Dec 22 23:22:27 ICT 2017
+base.0=/Users/TanNT/Documents/Workspace/Android/MyApplication2/appdemo/build/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex

@@ -28,12 +28,13 @@ public class MainActivity extends AppCompatActivity {
 
         new GetEarthQuake().execute();
     }
+
     private class GetEarthQuake extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Toast.makeText(MainActivity.this,"Json Data is downloading",Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "Json Data is downloading", Toast.LENGTH_LONG).show();
 
         }
 
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();
             // Making a request to url and getting response
-            String TEMP1  = "https://earthquake.usgs.gov/fdsnws/event/" +
+            String TEMP1 = "https://earthquake.usgs.gov/fdsnws/event/" +
                     "1/query?format=geojson&starttime=2017-11-01&endtime=2017-12-02&minmagnitude=5&limit=10";
             String TEMP2 = "https://earthquake.usgs.gov/fdsnws/event/" +
                     "1/query?format=geojson&starttime=2017-11-01&endtime=2017-12-02&minmagnitude=6&limit=10";
@@ -49,41 +50,28 @@ public class MainActivity extends AppCompatActivity {
             String jsonStr = sh.makeServiceCall(url);
 
             Log.e(TAG, "Response from url: " + jsonStr);
-            if (jsonStr != null) {
-                try {
-                    JSONObject jsonMain = new JSONObject(jsonStr);
-                    JSONArray featuresArray = jsonMain.getJSONArray("features");
-                    for (int i = 0 ; i < featuresArray.length(); i ++) {
-                        JSONObject propertiesObject = featuresArray.getJSONObject(i).getJSONObject("properties");
-                        double mag = propertiesObject.getDouble("mag");
-                        int tsunami = propertiesObject.getInt("tsunami");
-                        MEarthQuake mEarthQuake = new MEarthQuake(mag, tsunami);
-                        listObject.add(mEarthQuake);
-                    }
-
-                } catch (final JSONException e) {
-                    Log.e(TAG, "Json parsing error: " + e.getMessage());
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getApplicationContext(),
-                                    "Json parsing error: " + e.getMessage(),
-                                    Toast.LENGTH_LONG).show();
-                        }
-                    });
-
+            try {
+                JSONObject jsonMain = new JSONObject(jsonStr);
+                JSONArray featuresArray = jsonMain.getJSONArray("features");
+                for (int i = 0; i < featuresArray.length(); i++) {
+                    JSONObject propertiesObject = featuresArray.getJSONObject(i).getJSONObject("properties");
+                    double mag = propertiesObject.getDouble("mag");
+                    int tsunami = propertiesObject.getInt("tsunami");
+                    MEarthQuake mEarthQuake = new MEarthQuake(mag, tsunami);
+                    listObject.add(mEarthQuake);
                 }
 
-            } else {
-                Log.e(TAG, "Couldn't get json from server.");
+            } catch (final JSONException e) {
+                Log.e(TAG, "Json parsing error: " + e.getMessage());
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         Toast.makeText(getApplicationContext(),
-                                "Couldn't get json from server. Check LogCat for possible errors!",
+                                "Json parsing error: " + e.getMessage(),
                                 Toast.LENGTH_LONG).show();
                     }
                 });
+
             }
 
             return null;
